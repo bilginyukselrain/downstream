@@ -8,13 +8,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run a multi-line script
+      - name: Echo github event client payload parameters
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          echo ${{github.event}}
-          echo ${{github.event.client_payload}}
           echo ${{github.event.client_payload.commit_sha}}
           echo ${{github.event.client_payload.env}}
+  
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create dummy commit
+        run: |
+          echo {{github.event.client_payload.commit_sha}} > tag.txt
+          git add .
+          git commit -m "dummy commit message"
+          git push
 
 
