@@ -21,9 +21,13 @@ jobs:
       - uses: actions/checkout@v3
       - name: Create dummy commit
         run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          
           echo {{github.event.client_payload.commit_sha}} > tag.txt
+          
           git add .
-          git commit -m "dummy commit message"
+          git commit -m "Update tag.txt ${{github.event.client_payload.commit_sha}}"
           git push
 
 
