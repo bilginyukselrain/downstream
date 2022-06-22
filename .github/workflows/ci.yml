@@ -28,7 +28,7 @@ jobs:
           echo {{github.event.client_payload.commit_sha}} > tag.txt
           
           git add .
-          git commit -m "Update tag.txt ${{github.event.client_payload.commit_sha}}"
+          git commit -m ":rocket: Update tag.txt ${{github.event.client_payload.commit_sha}}"
           git push
 
 
