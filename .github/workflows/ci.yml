@@ -25,7 +25,7 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           
-          echo {{github.event.client_payload.commit_sha}} > tag.txt
+          echo ${{github.event.client_payload.commit_sha}} > tag.txt
           
           git add .
           git commit -m ":rocket: Update tag.txt ${{github.event.client_payload.commit_sha}}"
