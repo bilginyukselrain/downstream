@@ -13,7 +13,7 @@ jobs:
         run: |
           python3 ./scripts/update_values.py \
             --env ${{github.event.client_payload.env}} \
-            --regions ${{github.event.client_payload.regions}} \
+            --regions "${{github.event.client_payload.regions}}" \
             --tag ${{github.event.client_payload.commit_sha}}
             
           git config user.name "GitHub Actions Bot"
