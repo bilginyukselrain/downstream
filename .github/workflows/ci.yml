@@ -17,8 +17,9 @@ jobs:
           regions=${{toJSON(github.event.client_payload.regions)}}
           for item in ${regions[*]}
           do
-            echo "${item}"
+            echo values-${{github.event.client_payload.env}}-${item}
           done
+
         
   
 #   commit:
