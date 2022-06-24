@@ -13,6 +13,12 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          length=${{#github.event.client_payload.regions[*]}}
+          echo ${length}
+          for i in $(seq 0 length);
+          do
+              echo ${{github.event.client_payload.regions[i]}}
+          done          
           echo ${{github.event.client_payload.regions[0]}}
           echo ${{toJSON(github.event.client_payload.regions)}}
           regions=${{toJSON(github.event.client_payload.regions)}}
