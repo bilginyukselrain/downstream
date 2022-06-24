@@ -14,7 +14,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           echo ${{github.event.client_payload.commit_sha}}
-          echo ${{fromJSON(github.event)}}
+          echo ${{toJSON(github.event)}}
   
   commit:
     runs-on: ubuntu-latest
@@ -26,10 +26,15 @@ jobs:
           commit_sha=${{github.event.client_payload.commit_sha}}
           env=${{github.event.client_payload.env}}
           
+          for region in ${regions[*]}
+          do
+            echo "${region}"
+          done
+          
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           
-          echo "Deploy to ${env} - ${regions} - ${commit_sha}" > tag.txt
+          echo "Deploy to ${env} - ${regions[*]} - ${commit_sha}" > tag.txt
           
           git add .
           git commit -m ":rocket: Deploy to ${env} - ${regions}"
