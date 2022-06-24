@@ -14,7 +14,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           echo ${{github.event.client_payload.commit_sha}}
-          echo ${{github.event.client_payload.regions[*]}}
+          echo ${{fromJSON(github.event.client_payload.regions[*])}}
           
           for region in ${{github.event.client_payload.regions[*]}}
           do
