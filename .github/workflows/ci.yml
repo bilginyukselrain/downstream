@@ -14,7 +14,10 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           regions=${{github.event.client_payload.regions}}
-          echo ${regions[*]}
+          for item in ${regions[*]}
+          do
+            echo "${item}"
+          done
         
   
 #   commit:
